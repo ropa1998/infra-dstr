@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadbalancer-service
+  labels:
+    app: loadbalancer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadbalancer
+  template:
+    metadata:
+      labels:
+        app: loadbalancer
+    spec:
+      containers:
+      - name: stock
+        image: ropa1998/loadbalancer:latest
+        volumeMounts:
+          - name: config-vol
+            mountPath: /config
+        ports:
+        - containerPort: 5000
+      volumes:
+        - name: config-vol
+          configMap:
+            name: appconfig
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: loadbalancer
+  name: loadbalancer
+spec:
+  type: NodePort
+  selector:
+    app: loadbalancer
+  ports:
+      - protocol: TCP
+        port: 5000
+        targetPort: 5000
+        name: loadbalancer

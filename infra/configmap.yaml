@@ -1,0 +1,13 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: appconfig
+data:
+  loadbalancer-config.yaml: |
+    geoservices:
+      - "geo:50051"
+    authservices:
+      - "auth:9090"
+    stockservices:
+      - "stock:40041"
+    max_retries: 10
