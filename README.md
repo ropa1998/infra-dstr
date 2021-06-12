@@ -70,8 +70,22 @@ Then run the next command:
 helm install stock ./<path-to-file>/<file-name>.tgz
 ```
 
+Or use
+
+```bash
+kubectl apply -f stock-service-deployment.yaml
+```
+
 ### Loadbalancer
 
 ```bash
 kubectl apply -f loadbalancer-service-deployment.yaml
 ```
+
+### Exposing the service
+
+```bash
+minikube service --url loadbalancer
+```
+
+This will assing the loadbalancer service an external IP and port which you can test 
