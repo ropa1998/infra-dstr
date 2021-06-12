@@ -89,3 +89,13 @@ minikube service --url loadbalancer
 ```
 
 This will assing the loadbalancer service an external IP and port which you can test 
+
+## Linkerd
+
+Follow this [tutorial](https://linkerd.io/2.10/getting-started/)
+
+Then use this command 
+
+```bash
+kubectl get deploy -o yaml | linkerd inject - | kubectl apply -f -
+```
