@@ -30,4 +30,4 @@ spec:
   selector:
     app: stock
   ports:
-    - port: 9090
+    - port: 40041
