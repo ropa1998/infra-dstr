@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geo-service
+  labels:
+    app: geo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: geo
+  template:
+    metadata:
+      labels:
+        app: geo
+    spec:
+      containers:
+      - name: geo
+        image: ropa1998/geo-service:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 50051
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: geo
+  name: geo
+spec:
+  selector:
+    app: geo
+  ports:
+    - port: 50051
