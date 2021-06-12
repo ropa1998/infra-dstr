@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: geo
-        image: ropa1998/geo-service:latest.services
+        image: ropa1998/geo-service:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 50051
 ---

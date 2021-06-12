@@ -17,6 +17,7 @@ spec:
       containers:
       - name: stock
         image: ropa1998/loadbalancer:latest
+        imagePullPolicy: Always
         volumeMounts:
           - name: config-vol
             mountPath: /config
@@ -38,7 +39,6 @@ spec:
   selector:
     app: loadbalancer
   ports:
-      - protocol: TCP
-        port: 5000
-        targetPort: 5000
-        name: loadbalancer
+    - protocol: TCP
+      targetPort: 5000
+      port: 5000
